@@ -7,6 +7,7 @@ int main()
 {
     // 设置演讲管理类
     speechmanager sm;
+
     /*用于测试是否有正确创建选手，输出选手编号和姓名
     for(map<int,speaker>::iterator it = sm.m_speaker.begin(); it != sm.m_speaker.end(); it++)
     {
@@ -27,6 +28,7 @@ int main()
         {
         case 1:
             // 处理开始演讲比赛的逻辑
+            sm.start_speech();
             break;
         case 2:
             // 处理查看往届记录的逻辑

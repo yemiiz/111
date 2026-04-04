@@ -2,6 +2,9 @@
 #include <iostream>
 #include <algorithm>
 #include <random>
+#include <deque>
+#include <numeric>
+#include <string>
 using namespace std;
 speechmanager::speechmanager() // 不能加分号
 {
@@ -97,7 +100,7 @@ void speechmanager::start_speech()
     //1.抽签
     this->speech_draw();
     //2.比赛
-
+    speech_contest();
     //3.显示晋级结果
     
     //第二轮
@@ -109,3 +112,40 @@ void speechmanager::start_speech()
     //3.显示前三名结果
 
 }
+
+void speechmanager::speech_contest() {
+
+    cout << "第" << this->m_index << "轮比赛正在进行中..." << endl;
+
+    vector<int> v;
+    if(this->m_index == 1)      //这里的this可以省略，因为没有同名成员变量，编译器不会混淆
+    {
+        v = pre_speaker;        //this可以省略
+    }
+    else
+    {
+        v = final_speaker;
+    }
+    //遍历所有选手比赛
+    for (vector<int>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        //评委打分
+        deque<double> d;
+        for (int i = 0; i < 10;i++)
+        {
+            double score = (rand() % 401 + 600) / 10.f;
+            cout << score << " ";
+            d.push_back(score);
+
+        }
+
+        sort(d.begin(), d.end(),greater<double>()); // 从大到小排序
+        d.pop_front(); // 删除最高分
+        d.pop_back(); // 删除最低分    
+
+        double sum = accumulate(d.begin(), d.end(), 0.0); // 求和   最好是0.0 而不是0，因为如果是0的话，结果会被当成整数，最终结果会被截断成整数，导致精度丢失。
+        double avg = sum / (d.size() * 1.0); // 求平均分
+        this->m_speaker[*it].m_score[this->m_index - 1] = avg; // 将平均分存储到选手的score数组中
+        
+    }    
+};
