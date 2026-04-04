@@ -24,9 +24,10 @@ void speechmanager::exit_system()
     system("pause");
 }
 
-speechmanager::~speechmanager()
-{
-}
+speechmanager::~speechmanager() {
+
+};
+
 void speechmanager::init_speech() {
     this->pre_speaker.clear();
     this->final_speaker.clear();
@@ -35,6 +36,8 @@ void speechmanager::init_speech() {
 
     this->m_index = 1;
 };
+
+
 void speechmanager::create_speaker()
 {
     string nameseed = "ABCDEFGHIJKL";
@@ -53,6 +56,7 @@ void speechmanager::create_speaker()
         this->m_index++;
     }
 }
+
 void speechmanager::speech_draw()
 {
     cout << "第" << this->m_index << "轮比赛正在进行中..." << endl;
@@ -86,6 +90,7 @@ void speechmanager::speech_draw()
         system("pause");
     }
 }
+
 void speechmanager::start_speech()
 {
     //第一轮

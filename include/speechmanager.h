@@ -15,6 +15,7 @@ public:
     std::map<int, speaker> m_speaker;
     //初始化数据
     int m_index;
+    
     void init_speech(); 
     // 构造函数
     speechmanager();
