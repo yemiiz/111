@@ -6,6 +6,9 @@ speechmanager::speechmanager() // 不能加分号
     srand((unsigned int)time(NULL));
     this->init_speech();
     this->create_speaker();
+
+    // 读取往届比赛记录
+    this->load_record();
 }
 void speechmanager::show_menu()
 {
@@ -261,7 +264,24 @@ void speechmanager::load_record() {
     string data;
     while(ifs >> data)
     {
-        cout << data << endl;
+        vector<string> v;
+
+        int pos = -1;
+        int start = 0;
+
+        while(true)
+        {
+            pos = data.find(",", start);    //find函数返回找到的第一个逗号的位置，**如果找不到则返回-1**
+            if (pos == -1)
+            {
+                break;
+            }
+            string temp = data.substr(start, pos - start);
+            v.push_back(temp);
+
+            start = pos + 1;
+        }
+        this->m_record.insert(make_pair(m_index, v));
     }
     ifs.close();
 };
