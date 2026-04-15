@@ -1,10 +1,4 @@
 ﻿#include "speechmanager.h"
-#include <iostream>
-#include <algorithm>
-#include <random>
-#include <deque>
-#include <numeric>
-#include <string>
 using namespace std;
 speechmanager::speechmanager() // 不能加分号
 {
@@ -208,4 +202,9 @@ void speechmanager::show_score()
     system("pause");
     system("cls"); // 清屏，准备下一轮比赛
     // this->show_menu();    不需要在这里调用菜单，因为在main函数中已经调用了菜单，这里只需要清屏就可以了，准备下一轮比赛
+};
+
+void speechmanager::save_score() {
+    ofstream ofs;
+
 };

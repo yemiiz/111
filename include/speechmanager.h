@@ -1,6 +1,13 @@
 ﻿#pragma once
 #include <vector>
 #include <map>
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <deque>
+#include <numeric>
+#include <string>
+#include <fstream>
 #include "speaker.h"
 // 设置演讲管理类
 class speechmanager
@@ -34,6 +41,8 @@ public:
     void speech_contest();
     //展示成绩
     void show_score();
+    //保存成绩
+    void save_score();
     // 析构函数
     ~speechmanager();
 };
