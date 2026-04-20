@@ -36,8 +36,6 @@ void speechmanager::init_speech()
     this->final_speaker.clear();
     this->win_speaker.clear();
     this->m_speaker.clear();
-    this->m_record.clear();
-
     this->m_index = 1;
 };
 
@@ -272,13 +270,13 @@ void speechmanager::load_record() {
     while(ifs >> data)
     {
         vector<string> v;
-        int pos = -1;
-        int start = 0;
+        size_t pos = 0;
+        size_t start = 0;
 
         while(true)
         {
-            pos = data.find(",", start);    //find函数返回找到的第一个逗号的位置，**如果找不到则返回-1**
-            if (pos == -1)
+            pos = data.find(",", start);    //find函数返回找到的第一个逗号的位置，**如果找不到则返回string::npos**
+            if (pos == string::npos)
             {
                 break;
             }
@@ -313,6 +311,7 @@ void speechmanager::clear_record() {
         ofs.close();
         this->m_record.clear(); // 同时清空内存中的记录
         this->fileisempty = true;
+        this->init_speech(); // 清空当前比赛数据
         this->create_speaker(); // 重新创建选手，准备下一轮比赛
         cout << "比赛记录已清空！" << endl;
     }
